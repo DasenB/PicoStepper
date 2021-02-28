@@ -51,7 +51,7 @@ int main() {
   picostepper_set_async_direction(device, direction);
   picostepper_set_async_enabled(device, enabled);
 
-  picostepper_move_async(device, 10, &movement_finished);
+  picostepper_move_async(device, steps, &movement_finished);
 
   while (true) {
     // Accelerate
