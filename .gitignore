@@ -1,3 +1,7 @@
+# Build
+build/
+.vscode/
+
 # Prerequisites
 *.d
 
@@ -50,3 +54,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# macOS artefacts
+.DS_Store
