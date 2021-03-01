@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Bjarne Dasenbrook
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
 #ifndef PICOSTEPPER_H
 #define PICOSTEPPER_H
 

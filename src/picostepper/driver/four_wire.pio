@@ -1,3 +1,8 @@
+;
+; Copyright (c) 2021 Bjarne Dasenbrook
+;
+; SPDX-License-Identifier: BSD-3-Clause
+;
 
 
 .program picostepper_four_wire                            ; Execute the remaining steps for a running movement

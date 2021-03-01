@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2021 Bjarne Dasenbrook
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 #include "picostepper.h"
 
 void movement_finished(PicoStepper device) {
