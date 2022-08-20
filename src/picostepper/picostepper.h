@@ -62,8 +62,8 @@ enum PicoStepperMotorType_def {
 typedef enum PicoStepperMotorType_def PicoStepperMotorType;
 
 
-struct PicoStepperContainer psc;
-bool psc_is_initialised;
+extern struct PicoStepperContainer psc;
+extern bool psc_is_initialised;
 
 static void picostepper_async_handler();
 static PicoStepperRawDevice picostepper_create_raw_device();
