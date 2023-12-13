@@ -32,4 +32,5 @@ pico_enable_stdio_uart(picostepper 1)
 # Compile the PIO-programs and include it into the project
 pico_add_extra_outputs(picostepper)
 pico_generate_pio_header(picostepper ${CMAKE_CURRENT_LIST_DIR}/src/picostepper/driver/four_wire.pio)
+pico_generate_pio_header(picostepper ${CMAKE_CURRENT_LIST_DIR}/src/picostepper/driver/two_wire.pio)
 
