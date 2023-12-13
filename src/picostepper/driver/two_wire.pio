@@ -1,0 +1,55 @@
+;
+; Copyright (c) 2021 Bjarne Dasenbrook
+;
+; SPDX-License-Identifier: BSD-3-Clause
+;
+
+.program picostepper_two_wire                            ; Execute the remaining steps for a running movement
+
+picostepper_main:
+  pull
+  out y 1                                                 ; y = (bool) enabled
+  jmp !y picostepper_main                                 ; if (!enabled): restart program
+  out y 1                                                 ; y = (bool) direction
+  out x 30                                                ; x = (uint30_t) delay
+  jmp !y picostepper_direction_0                          ; if (y = 0): direction_0 (else): direction_1
+
+picostepper_direction_1:
+  set pins 0b00                                           ; DIR=1 PUL=0
+picostepper_direction_1_loop:
+  jmp x-- picostepper_direction_1_loop                    ; while (x != 0) delay--
+  set pins 0b01                                           ; DIR=1 PUL=1
+  jmp picostepper_main                                    ; Restart the program
+
+picostepper_direction_0:
+  set pins 0b10                                           ; DIR=0 PUL=0
+picostepper_direction_0_loop:
+  jmp x-- picostepper_direction_0_loop                    ; while (x != 0) delay--
+  set pins 0b11                                           ; DIR=0 PUL=1
+  jmp picostepper_main                                    ; Restart the program
+
+
+% c-sdk {
+
+  static inline void picostepper_two_wire_program_init(PIO pio, uint sm, uint offset, uint base_pin) {
+
+      // General configuration for the pio systems
+      pio_sm_config c = picostepper_two_wire_program_get_default_config(offset);
+      sm_config_set_clkdiv_int_frac(&c, 1024, 0);
+      sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+
+      // SET PINS
+      pio_gpio_init(pio, base_pin); 
+      pio_gpio_init(pio, base_pin + 1); 
+      pio_sm_set_consecutive_pindirs(pio, sm, base_pin, 2, true);
+      pio_sm_set_set_pins(pio, sm, base_pin, 4);
+      sm_config_set_set_pins(&c, base_pin, 4);
+
+
+      // Start PIO-Program
+      pio_sm_init(pio, sm, offset, &c);
+      pio_sm_set_enabled(pio, sm, true);
+
+  }
+
+%}
