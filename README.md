@@ -71,7 +71,10 @@ int main() {
 }
 ```
 
-# Hardware
-For a device the lowest GPIO-Pin number is supplyed as the base-pin. The base-pin and the consecutive pins (depending on the driver-type) are then assigned to the picostepper. It is not possible to freely choose all individual pins independently.
 
-Currently only one driver is implemented. The `FourWireDriver` is used to control drivers that require a direction-signal (DIR), an inverted direction-signal (!DIR), a step-signal (PUL) and an inverted step-signal (!PUL). Other devices can be supported easily by creating a corresponding PIO-program for the signal-generation. I plan to do so but pull requests are highly welcome.
+# Drivers
+- The `FourWireDriver` is used to control drivers that require a direction-signal (DIR), an inverted direction-signal (!DIR), a step-signal (PUL) and an inverted step-signal (!PUL). 
+- The `TwoWireDriver` is used to control drivers ghat require a direction-signal (DIR) and a step-signal (STEP).
+
+Currently only two drivers are implemented. 
+Other devices can be supported easily by creating a corresponding PIO-program for the signal-generation. Pull requests are highly welcome.
