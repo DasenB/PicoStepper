@@ -136,6 +136,10 @@ PicoStepper picostepper_init(uint base_pin, PicoStepperMotorType driver) {
       picostepper_driver_program = &picostepper_four_wire_program;
       break;
 
+    case TwoWireDriver: 
+      picostepper_driver_program = &picostepper_two_wire_program;
+      break;
+
     // Other drivers are not yet implemented
     default:  return -1;
   }
@@ -149,6 +153,10 @@ PicoStepper picostepper_init(uint base_pin, PicoStepperMotorType driver) {
     case FourWireDriver:   
       picostepper_four_wire_program_init(psc.devices[device].pio, psc.devices[device].statemachine, picostepper_program_offset, base_pin);
       break;
+
+    case TwoWireDriver:   
+      picostepper_two_wire_program_init(psc.devices[device].pio, psc.devices[device].statemachine, picostepper_program_offset, base_pin);
+      break;  
       
     // Other drivers are not yet implemented
     default:  return -1;

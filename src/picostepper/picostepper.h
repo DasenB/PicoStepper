@@ -16,6 +16,7 @@
 #include "hardware/irq.h"
 
 #include "four_wire.pio.h"
+#include "two_wire.pio.h"
 
 
 
