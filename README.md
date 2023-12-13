@@ -74,7 +74,7 @@ int main() {
 
 # Drivers
 - The `FourWireDriver` is used to control drivers that require a direction-signal (DIR), an inverted direction-signal (!DIR), a step-signal (PUL) and an inverted step-signal (!PUL). 
-- The `TwoWireDriver` is used to control drivers ghat require a direction-signal (DIR) and a step-signal (STEP).
+- The `TwoWireDriver` is used to control drivers that require a direction-signal (DIR) and a step-signal (STEP).
 
 Currently only two drivers are implemented. 
 Other devices can be supported easily by creating a corresponding PIO-program for the signal-generation. Pull requests are highly welcome.
