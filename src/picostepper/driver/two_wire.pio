@@ -15,17 +15,17 @@ picostepper_main:
   jmp !y picostepper_direction_0                          ; if (y = 0): direction_0 (else): direction_1
 
 picostepper_direction_1:
-  set pins 0b00                                           ; DIR=1 PUL=0
+  set pins 0b10                                           ; DIR=1 PUL=0
 picostepper_direction_1_loop:
   jmp x-- picostepper_direction_1_loop                    ; while (x != 0) delay--
-  set pins 0b01                                           ; DIR=1 PUL=1
+  set pins 0b11                                           ; DIR=1 PUL=1
   jmp picostepper_main                                    ; Restart the program
 
 picostepper_direction_0:
-  set pins 0b10                                           ; DIR=0 PUL=0
+  set pins 0b00                                           ; DIR=0 PUL=0
 picostepper_direction_0_loop:
   jmp x-- picostepper_direction_0_loop                    ; while (x != 0) delay--
-  set pins 0b11                                           ; DIR=0 PUL=1
+  set pins 0b01                                           ; DIR=0 PUL=1
   jmp picostepper_main                                    ; Restart the program
 
 
