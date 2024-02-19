@@ -260,7 +260,7 @@ bool picostepper_move_async(PicoStepper device, int steps, PicoStepperCallback f
     psc.devices[device].is_running = true;
 
     // // Add a delay before starting the DMA transfer
-    sleep_ms(1);
+    sleep_us(100);
 
     // Start the DMA transfer
     dma_channel_start(psc.devices[device].dma_channel);
