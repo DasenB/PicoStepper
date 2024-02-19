@@ -36,7 +36,7 @@ picostepper_direction_0_loop:
 
       // General configuration for the pio systems
       pio_sm_config c = picostepper_four_wire_program_get_default_config(offset);
-      sm_config_set_clkdiv_int_frac(&c, 1024, 0);
+      sm_config_set_clkdiv_int_frac(&c, 125, 0);
       sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
 
       // SET PINS
