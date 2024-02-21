@@ -255,10 +255,17 @@ bool picostepper_move_async(PicoStepper device, int steps, PicoStepperCallback f
         false             // Don't start yet
     );
   }
-  // Set read address for the dma (switching between two buffers has not been implemented) and start transmission
-  dma_channel_set_read_addr(psc.devices[device].dma_channel, &psc.devices[device].command, true);
-  psc.devices[device].is_running = true;
+    // Set read address for the dma (switching between two buffers has not been implemented) and start transmission
+    dma_channel_set_read_addr(psc.devices[device].dma_channel, &psc.devices[device].command, false);
+    psc.devices[device].is_running = true;
 
+    // // Add a delay before starting the DMA transfer
+    sleep_us(100);
+
+    // Start the DMA transfer
+    dma_channel_start(psc.devices[device].dma_channel);
+
+    dma_channel_wait_for_finish_blocking(psc.devices[device].dma_channel);
   return true;
 }
 
